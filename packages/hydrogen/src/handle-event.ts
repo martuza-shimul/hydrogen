@@ -75,7 +75,6 @@ export default async function handleEvent(
   }
 
   const isStreamable = streamableResponse && isStreamableRequest(url);
-
   const logger = log(request);
 
   /**
@@ -99,7 +98,7 @@ export default async function handleEvent(
         response: streamableResponse,
         template,
         dev,
-        log: logger
+        log: logger,
       });
     }
     return;
@@ -111,7 +110,7 @@ export default async function handleEvent(
       context: {},
       isReactHydrationRequest,
       dev,
-      log: logger
+      log: logger,
     });
 
   const headers = componentResponse.headers;
