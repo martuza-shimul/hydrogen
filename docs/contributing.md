@@ -51,6 +51,75 @@ yarn lint
 yarn format
 ```
 
+## Naming conventions
+
+Hydrogen follows common React naming conventions for filenames, component names, classes, constants, and more.
+
+- For component **filenames** and **class names**, always use `PascalCase`.
+- When declaring **instances** of components, always use `camelCase`.
+- When declaring **constants**, always use `SCREAMING_SNAKE_CASE`
+
+<table>
+  <thead>
+    <tr>
+      <td>&nbsp;</td>
+      <td>✅ Valid</td>
+      <td>🚫 Invalid</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <b>Component filenames:</b>
+      </td>
+      <td>
+        <code>ProductTitle.tsx</code><br>
+        <code>ProductTitle.client.tsx</code>
+      </td>
+      <td>
+        <code>productTitle.tsx</code><br>
+        <code>product_title.tsx</code><br>
+        <code>product-title.client.tsx</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Component classes:</b>
+      </td>
+      <td>
+        <code>&lt;AddToCartButton /&gt;</code>
+      </td>
+      <td>
+        <code>&lt;addToCartButton /&gt;</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Component instances:</b>
+      </td>
+      <td>
+        <code>const cartSelector = &lt;CartSelector /&gt;</code>
+      </td>
+      <td>
+        <code>const CartSelector = &lt;CartSelector /&gt;</code><br>
+        <code>const cart_selector = &lt;CartSelector /&gt;</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Constants:</b>
+      </td>
+      <td>
+        <code>export const CART_COOKIE_TTL_DAYS = 14;</code>
+      </td>
+      <td>
+        <code>export const CartCookieTTLDays = 14;</code><br>
+        <code>export const cart_cookie_ttl_days = 14;</code>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
 ## Commit Messages
 
 Commit messages must follow the [commit message convention](../.github/commit-convention.md) so that changelogs can be more easily generated. Commit messages are automatically validated before commit (by invoking [Git Hooks](https://git-scm.com/docs/githooks) via [yorkie](https://github.com/yyx990803/yorkie)).
