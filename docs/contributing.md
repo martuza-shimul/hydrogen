@@ -56,8 +56,10 @@ yarn format
 Hydrogen follows common React naming conventions for filenames, component names, classes, constants, and more.
 
 - For component **filenames** and **class names**, always use `PascalCase`.
+- For **non-component filenames**, always use fully lowercase `kebab-case`.
+- For **test filenames**, append `.test` before the file extension.
 - When declaring **instances** of components, always use `camelCase`.
-- When declaring **constants**, always use `SCREAMING_SNAKE_CASE`
+- When declaring **constants**, always use `SCREAMING_SNAKE_CASE`.
 
 <table>
   <thead>
@@ -80,6 +82,33 @@ Hydrogen follows common React naming conventions for filenames, component names,
         <code>productTitle.tsx</code><br>
         <code>product_title.tsx</code><br>
         <code>product-title.client.tsx</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Non-component filenames:</b>
+      </td>
+      <td>
+        <code>client.ts</code><br>
+        <code>handle-event.ts</code>
+      </td>
+      <td>
+        <code>Client.ts</code><br>
+        <code>handleEvent.ts</code><br>
+        <code>handle_event.ts</code>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <b>Test filenames:</b>
+      </td>
+      <td>
+        <code>ExternalVideo.test.tsx</code>
+      </td>
+      <td>
+        <code>ExternalVideo-test.tsx</code><br>
+        <code>ExternalVideo_test.tsx</code><br>
+        <code>ExternalVideoTest.tsx</code>
       </td>
     </tr>
     <tr>
