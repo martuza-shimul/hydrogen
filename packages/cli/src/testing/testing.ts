@@ -174,20 +174,33 @@ async function runCliCommand(
   const childProcess = await spawn(hydrogenCli, command.split(' '), {
     cwd: directory,
     env: {...process.env},
+    shell: true,
   });
 
   return new Promise((resolve, reject) => {
-    incrementallyPassInputs(userInput);
-
-    function onError(err: any) {
+    function onError(error: Error) {
       childProcess.stdin.end();
-      result.error = err.data;
+      result.error = error;
       reject(result);
     }
 
+    childProcess.on('exit', () => {
+      resolve(result);
+    });
+
     childProcess.stdout.on('data', (data) => {
       result.stdout.push(data.toString());
+      const nextInput = userInput.shift();
+
+      setTimeout(() => {
+        if (!nextInput) {
+          return;
+        }
+
+        childProcess.stdin.write(nextInput);
+      }, INPUT_TIMEOUT);
     });
+
     childProcess.on('error', onError);
     childProcess.on('close', () => {
       result.success = true;
@@ -195,20 +208,6 @@ async function runCliCommand(
       resolve(result);
     });
   });
-
-  function incrementallyPassInputs(inputs: string[]) {
-    if (inputs.length === 0) {
-      childProcess.stdin.end();
-
-      return;
-    }
-
-    setTimeout(() => {
-      childProcess.stdin.write(inputs[0]);
-
-      incrementallyPassInputs(inputs.slice(1));
-    }, INPUT_TIMEOUT);
-  }
 }
 
 async function runInstall(directory: string) {
